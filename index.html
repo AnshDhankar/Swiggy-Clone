@@ -1,0 +1,1015 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Swiggy - Food Delivery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #282c3f;
+            background-color: white;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        button {
+            cursor: pointer;
+        }
+        /* HEADER */
+        
+        header {
+            width: 100%;
+            padding: 20px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            box-shadow: 0 3px 12px #00000010;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 10;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fc8019;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #fc8019;
+            color: white;
+            border-radius: 12px 12px 12px 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .location strong {
+            border-bottom: 2px solid #282c3f;
+            padding-bottom: 4px;
+        }
+        
+        .location span {
+            color: #686b78;
+        }
+        
+        .location .down {
+            color: #fc8019;
+            font-size: 22px;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            color: #fc8019;
+        }
+        
+        .new {
+            color: #fc8019;
+            font-size: 10px;
+        }
+        /* HERO SECTION */
+        
+        .hero {
+            width: 88%;
+            min-height: 390px;
+            margin: 35px auto 45px;
+            padding: 45px 6%;
+            border-radius: 20px;
+            background-color: #fff3e7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            width: 58%;
+        }
+        
+        .hero h1 {
+            font-size: 39px;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+        
+        .hero-content>p {
+            color: #686b78;
+            font-size: 16px;
+            margin-bottom: 22px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #d5d6dc;
+            border-radius: 10px;
+            padding: 0 15px;
+            height: 55px;
+            max-width: 480px;
+            margin-top: 14px;
+        }
+        
+        .search-box .icon {
+            font-size: 21px;
+            margin-right: 10px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .search-box button {
+            border: none;
+            background: none;
+            color: #fc8019;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .search-box .search-button {
+            background-color: #fc8019;
+            color: white;
+            border-radius: 8px;
+            font-size: 22px;
+            padding: 7px 13px;
+        }
+        
+        .hero-images {
+            width: 36%;
+            min-height: 290px;
+            position: relative;
+        }
+        
+        .hero-images img {
+            position: absolute;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 7px solid white;
+            box-shadow: 0 8px 25px #00000018;
+        }
+        
+        .hero-burger {
+            width: 200px;
+            height: 200px;
+            right: 75px;
+            top: 0;
+        }
+        
+        .hero-pizza {
+            width: 155px;
+            height: 155px;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .hero-label {
+            position: absolute;
+            left: 0;
+            bottom: 10px;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 5px 20px #00000012;
+            line-height: 1.7;
+        }
+        /* COMMON SECTIONS */
+        
+        .section {
+            width: 88%;
+            margin: 45px auto;
+        }
+        
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        
+        .section-heading h2 {
+            font-size: 27px;
+        }
+        
+        .arrows {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .arrows button {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 50%;
+            background-color: #e9e9eb;
+            font-size: 25px;
+        }
+        
+        hr {
+            width: 88%;
+            margin: 40px auto;
+            border: none;
+            border-top: 1px solid #e9e9eb;
+        }
+        /* FOOD CATEGORIES */
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 20px;
+        }
+        
+        .category {
+            text-align: center;
+        }
+        
+        .category img {
+            width: 100%;
+            max-width: 125px;
+            height: 125px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: auto;
+            transition: transform 0.2s;
+        }
+        
+        .category:hover img {
+            transform: scale(1.05);
+        }
+        
+        .category p {
+            margin-top: 12px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        /* RESTAURANT CARDS */
+        
+        .restaurant-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+        
+        .restaurant-card {
+            display: block;
+            min-width: 0;
+            transition: transform 0.2s;
+        }
+        
+        .restaurant-card:hover {
+            transform: scale(0.98);
+        }
+        
+        .restaurant-image {
+            height: 190px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            background-color: #f3f3f3;
+        }
+        
+        .restaurant-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .offer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 10px 10px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            background: linear-gradient(transparent, #000000c9);
+        }
+        
+        .restaurant-card h3 {
+            font-size: 18px;
+            margin: 6px 0;
+        }
+        
+        .rating {
+            font-weight: bold;
+            font-size: 14px;
+            margin: 7px 0;
+        }
+        
+        .restaurant-card p {
+            margin: 6px 0;
+            font-size: 14px;
+        }
+        
+        .muted {
+            color: #686b78;
+        }
+        /* FILTER BUTTONS */
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 28px;
+        }
+        
+        .filters button {
+            padding: 11px 17px;
+            border: 1px solid #d5d6dc;
+            border-radius: 25px;
+            background: white;
+            color: #282c3f;
+            font-size: 13px;
+        }
+        
+        .filters button:hover {
+            background-color: #fff3e7;
+            border-color: #fc8019;
+        }
+        /* CITY AND CUISINE LINKS */
+        
+        .link-section h2 {
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
+        
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .link-grid a {
+            border: 1px solid #d5d6dc;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 14px;
+            color: #414450;
+        }
+        
+        .link-grid a:hover {
+            background-color: #fff8f1;
+            border-color: #fc8019;
+        }
+        /* APP DOWNLOAD SECTION */
+        
+        .app-download {
+            background-color: #f1f1f6;
+            padding: 35px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+        
+        .app-download h2 {
+            font-size: 27px;
+            max-width: 500px;
+            line-height: 1.4;
+        }
+        
+        .app-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .app-buttons img {
+            width: 160px;
+            height: 55px;
+            object-fit: contain;
+        }
+        /* FOOTER */
+        
+        footer {
+            background-color: #f1f1f6;
+            padding: 40px 6%;
+        }
+        
+        .footer-columns {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 35px;
+        }
+        
+        .footer-logo {
+            display: inline-flex;
+            margin-bottom: 15px;
+        }
+        
+        .footer-columns h3 {
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-columns a:not(.logo) {
+            display: block;
+            margin: 14px 0;
+            color: #686b78;
+            font-size: 14px;
+        }
+        
+        .footer-columns a:hover {
+            color: #fc8019;
+        }
+        
+        .footer-columns p {
+            color: #686b78;
+            font-size: 13px;
+        }
+        /* RESPONSIVE DESIGN */
+        
+        @media (max-width: 1050px) {
+            header {
+                flex-wrap: wrap;
+            }
+            nav {
+                flex-wrap: wrap;
+                gap: 17px;
+            }
+            .hero {
+                width: 92%;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .categories {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .restaurant-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 5%;
+                gap: 15px;
+            }
+            .logo {
+                font-size: 25px;
+            }
+            .location {
+                font-size: 12px;
+            }
+            nav {
+                width: 100%;
+                font-size: 12px;
+            }
+            .hero {
+                display: block;
+                padding: 30px 6%;
+            }
+            .hero-content {
+                width: 100%;
+            }
+            .hero h1 {
+                font-size: 27px;
+            }
+            .hero-images {
+                width: 100%;
+                min-height: 230px;
+                margin-top: 25px;
+            }
+            .hero-burger {
+                width: 160px;
+                height: 160px;
+                right: 90px;
+            }
+            .hero-pizza {
+                width: 125px;
+                height: 125px;
+            }
+            .section {
+                width: 90%;
+            }
+            .section-heading h2,
+            .link-section h2 {
+                font-size: 21px;
+            }
+            .categories {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 22px 8px;
+            }
+            .category img {
+                width: 75px;
+                height: 75px;
+            }
+            .category p {
+                font-size: 12px;
+            }
+            .restaurant-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px 12px;
+            }
+            .restaurant-image {
+                height: 130px;
+            }
+            .offer {
+                font-size: 12px;
+            }
+            .restaurant-card h3 {
+                font-size: 15px;
+            }
+            .restaurant-card p {
+                font-size: 12px;
+            }
+            .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .link-grid a {
+                font-size: 12px;
+                padding: 15px 5px;
+            }
+            .app-download {
+                display: block;
+            }
+            .app-download h2 {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+            .app-buttons {
+                flex-wrap: wrap;
+            }
+            .app-buttons img {
+                width: 130px;
+            }
+            .footer-columns {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a href="#" class="logo">
+            <span class="logo-icon">S</span> swiggy
+        </a>
+
+        <div class="location">
+            <strong>Other</strong>
+            <span>Meerut, Uttar Pradesh</span>
+            <span class="down">⌄</span>
+        </div>
+
+        <nav>
+            <a href="#">▣ Swiggy Corporate</a>
+            <a href="#">⌕ Search</a>
+            <a href="#">🏷 Offers <span class="new">NEW</span></a>
+            <a href="#">ⓘ Help</a>
+            <a href="#">♙ Sign In</a>
+            <a href="#">🛒 Cart</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO SECTION -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>
+                    Order food & groceries.<br> Discover best restaurants.
+                </h1>
+
+                <p>Get your favourite food delivered to your doorstep.</p>
+
+                <div class="search-box">
+                    <span class="icon">📍</span>
+                    <input type="text" placeholder="Enter your delivery location">
+                    <button type="button">Locate Me</button>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" placeholder="Search for restaurant, item or more">
+                    <button class="search-button" type="button">⌕</button>
+                </div>
+
+            </div>
+
+            <div class="hero-images">
+
+                <img class="hero-burger" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Burger">
+
+                <img class="hero-pizza" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" alt="Pizza">
+
+                <div class="hero-label">
+                    Hungry?<br>
+                    <strong>Let's eat! 🍔</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOD CATEGORIES -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <h2>What's on your mind?</h2>
+
+                <div class="arrows">
+                    <button type="button">‹</button>
+                    <button type="button">›</button>
+                </div>
+            </div>
+
+            <div class="categories">
+
+                <a href="#" class="category">
+                    <img src="Biryanii.jpg">
+                    <p>Biryani</p>
+                </a>
+
+                <a href="#" class="category">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80" alt="Pizza">
+                    <p>Pizza</p>
+                </a>
+
+                <a href="#" class="category">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80" alt="Burgers">
+                    <p>Burgers</p>
+                </a>
+
+                <a href="#" class="category">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=300&q=80" alt="Snacks">
+                    <p>Snacks</p>
+                </a>
+
+                <a href="#" class="category">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=300&q=80" alt="Cake">
+                    <p>Cakes</p>
+                </a>
+
+                <a href="#" class="category">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80" alt="North Indian food">
+                    <p>North Indian</p>
+                </a>
+
+                <a href="#" class="category">
+                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=300&q=80" alt="Noodles">
+                    <p>Noodles</p>
+                </a>
+
+                <a href="#" class="category">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=300&q=80" alt="Healthy food">
+                    <p>Healthy</p>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- TOP RESTAURANTS -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <h2>Top restaurant chains in Meerut</h2>
+
+                <div class="arrows">
+                    <button type="button">‹</button>
+                    <button type="button">›</button>
+                </div>
+            </div>
+
+            <div class="restaurant-list">
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Pizza">
+                        <div class="offer">ITEMS AT ₹99</div>
+                    </div>
+
+                    <h3>Pizza Hut</h3>
+                    <p class="rating">⭐ 4.2 · 25-30 mins</p>
+                    <p class="muted">Pizzas, Italian, Fast Food</p>
+                    <p class="muted">Meerut</p>
+
+                </a>
+
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Burger">
+                        <div class="offer">50% OFF UP TO ₹100</div>
+                    </div>
+
+                    <h3>Burger King</h3>
+                    <p class="rating">⭐ 4.1 · 20-25 mins</p>
+                    <p class="muted">Burgers, American</p>
+                    <p class="muted">Meerut</p>
+
+                </a>
+
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="Biryani.webp" alt="Biryani">
+                        <div class="offer">FLAT ₹125 OFF</div>
+                    </div>
+
+                    <h3>Behrouz Biryani</h3>
+                    <p class="rating">⭐ 4.3 · 30-35 mins</p>
+                    <p class="muted">Biryani, Mughlai</p>
+                    <p class="muted">Meerut</p>
+
+                </a>
+
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Indian food">
+                        <div class="offer">40% OFF</div>
+                    </div>
+
+                    <h3>Punjabi Rasoi</h3>
+                    <p class="rating">⭐ 4.0 · 25-30 mins</p>
+                    <p class="muted">North Indian, Thalis</p>
+                    <p class="muted">Meerut</p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- ONLINE FOOD DELIVERY -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <h2>Restaurants with online food delivery</h2>
+            </div>
+
+            <div class="filters">
+                <button type="button">☷ Filter</button>
+                <button type="button">↕ Sort By</button>
+                <button type="button">Fast Delivery</button>
+                <button type="button">⭐ Ratings 4.0+</button>
+                <button type="button">Pure Veg</button>
+                <button type="button">Offers</button>
+                <button type="button">₹300-₹600</button>
+            </div>
+
+            <div class="restaurant-list">
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Pizza">
+                        <div class="offer">40% OFF UP TO ₹80</div>
+                    </div>
+
+                    <h3>La Pino'z Pizza</h3>
+                    <p class="rating">⭐ 4.1 · 25-30 mins</p>
+                    <p class="muted">Pizzas, Italian</p>
+
+                </a>
+
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Dessert">
+                        <div class="offer">ITEMS AT ₹79</div>
+                    </div>
+
+                    <h3>The Dessert House</h3>
+                    <p class="rating">⭐ 4.4 · 20-25 mins</p>
+                    <p class="muted">Desserts, Bakery</p>
+
+                </a>
+
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Noodles">
+                        <div class="offer">30% OFF</div>
+                    </div>
+
+                    <h3>Chinese Wok</h3>
+                    <p class="rating">⭐ 4.0 · 25-30 mins</p>
+                    <p class="muted">Chinese, Asian</p>
+
+                </a>
+
+
+                <a href="#" class="restaurant-card">
+
+                    <div class="restaurant-image">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Healthy food">
+                        <div class="offer">FLAT ₹100 OFF</div>
+                    </div>
+
+                    <h3>Healthy Bowl</h3>
+                    <p class="rating">⭐ 4.2 · 20-30 mins</p>
+                    <p class="muted">Salads, Healthy Food</p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <hr>
+
+
+        <!-- CITIES -->
+
+        <section class="section link-section">
+
+            <h2>Best places to eat across cities</h2>
+
+            <div class="link-grid">
+                <a href="#">Best Restaurants in Bengaluru</a>
+                <a href="#">Best Restaurants in Mumbai</a>
+                <a href="#">Best Restaurants in Delhi</a>
+                <a href="#">Best Restaurants in Hyderabad</a>
+                <a href="#">Best Restaurants in Chennai</a>
+                <a href="#">Best Restaurants in Kolkata</a>
+                <a href="#">Best Restaurants in Pune</a>
+                <a href="#">Best Restaurants in Meerut</a>
+            </div>
+
+        </section>
+
+
+        <!-- CUISINES -->
+
+        <section class="section link-section">
+
+            <h2>Best Cuisines Near Me</h2>
+
+            <div class="link-grid">
+                <a href="#">Chinese Food</a>
+                <a href="#">South Indian Food</a>
+                <a href="#">North Indian Food</a>
+                <a href="#">Pizza</a>
+                <a href="#">Biryani</a>
+                <a href="#">Burgers</a>
+                <a href="#">Cakes</a>
+                <a href="#">Street Food</a>
+            </div>
+
+        </section>
+
+
+        <!-- APP DOWNLOAD -->
+
+        <section class="app-download">
+
+            <h2>For better experience, download the Swiggy app</h2>
+
+            <div class="app-buttons">
+
+                <a href="#">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                </a>
+
+                <a href="#">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-columns">
+
+            <div>
+
+                <a href="#" class="logo footer-logo">
+                    <span class="logo-icon">S</span> swiggy
+                </a>
+
+                <p>© 2026 Swiggy Limited</p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Company</h3>
+
+                <a href="#">About Us</a>
+                <a href="#">Swiggy Corporate</a>
+                <a href="#">Careers</a>
+                <a href="#">Team</a>
+                <a href="#">Swiggy One</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Contact Us</h3>
+
+                <a href="#">Help & Support</a>
+                <a href="#">Partner with us</a>
+                <a href="#">Ride with us</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Legal</h3>
+
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie Policy</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Investor Relations</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
+```
